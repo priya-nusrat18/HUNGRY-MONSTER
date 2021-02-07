@@ -1,13 +1,19 @@
-const search = document.getElementById('search');
-const term = search.value ;
-search.addEventListener('click', function () {
+const searchBtn = document.getElementById('search-btn');
+searchBtn.addEventListener('click', function () {
+    const inputField = document.getElementById('inputField');
+    const term = inputField.value ;
 
     fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${term}`)
     .then(res => res.json())
-    .then(data => displayMeal(data))
+    .then(data => {
+        if(term == "" || term == null){
+                alert("I am priya Not Priyanka");
+            }
+            else{
+                displayMeal(data);
+            }
+    })
     .catch(error => alert('you type wrong mealname'))
-
-
 });
 
 const displayMeal = foods =>{
